@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mark of the Dawn - Admin Bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --space-black: #0a0a0f;
+        --deep-space: #1a1a2e;
+        --nebula-blue: #16213e;
+        --stellar-cyan: #00f5ff;
+        --plasma-orange: #ff6b35;
+        --cosmic-purple: #8a2be2;
+        --ion-green: #39ff14;
+        --silver-hull: #c0c0c0;
+        --warning-amber: #ffbf00;
+        --danger-red: #ff073a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Space Mono', monospace;
+        background: linear-gradient(135deg, var(--space-black) 0%, var(--deep-space) 50%, var(--nebula-blue) 100%);
+        color: var(--silver-hull);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(0, 245, 255, 0.4), transparent),
+          radial-gradient(1px 1px at 50px 160px, rgba(255, 107, 53, 0.3), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(138, 43, 226, 0.3), transparent),
+          radial-gradient(2px 2px at 130px 80px, rgba(57, 255, 20, 0.2), transparent);
+        background-repeat: repeat;
+        background-size: 200px 200px;
+        pointer-events: none;
+        z-index: -1;
+        animation: starfield 20s linear infinite;
+      }
+
+      @keyframes starfield {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-200px); }
+      }
+
+      .command-center {
+        width: 100%;
+        max-width: 600px;
+        margin: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .command-panel {
+        background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+        border: 2px solid var(--danger-red);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 
+          0 0 40px rgba(255, 7, 58, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        position: relative;
+      }
+
+      .command-panel::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, var(--danger-red), var(--plasma-orange), var(--warning-amber), var(--danger-red));
+        border-radius: 20px;
+        z-index: -1;
+        animation: dangerPulse 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes dangerPulse {
+        0% { opacity: 0.6; }
+        100% { opacity: 1; }
+      }
+
+      .command-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .command-title {
+        font-family: 'Orbitron', monospace;
+        font-size: 2.2rem;
+        font-weight: 900;
+        background: linear-gradient(45deg, var(--danger-red), var(--plasma-orange));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(255, 7, 58, 0.6);
+        margin-bottom: 0.5rem;
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        0% { text-shadow: 0 0 30px rgba(255, 7, 58, 0.6); }
+        100% { text-shadow: 0 0 50px rgba(255, 7, 58, 0.9), 0 0 70px rgba(255, 107, 53, 0.4); }
+      }
+
+      .command-subtitle {
+        font-family: 'Orbitron', monospace;
+        color: var(--warning-amber);
+        font-size: 1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .system-info {
+        background: rgba(10, 10, 15, 0.7);
+        border: 1px solid rgba(255, 191, 0, 0.3);
+        border-radius: 10px;
+        padding: 1rem;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.85rem;
+        color: var(--warning-amber);
+        text-align: left;
+        margin-bottom: 1.5rem;
+      }
+
+      .system-info code {
+        color: var(--stellar-cyan);
+        font-weight: bold;
+      }
+
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .input-label {
+        display: block;
+        font-family: 'Orbitron', monospace;
+        color: var(--danger-red);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 10px rgba(255, 7, 58, 0.5);
+      }
+
+      #url {
+        width: 100%;
+        background: rgba(10, 10, 15, 0.8);
+        border: 2px solid var(--nebula-blue);
+        border-radius: 12px;
+        color: var(--silver-hull);
+        font-family: 'Space Mono', monospace;
+        font-size: 1rem;
+        padding: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      #url:focus {
+        outline: none;
+        border-color: var(--danger-red);
+        box-shadow: 0 0 20px rgba(255, 7, 58, 0.4);
+        background: rgba(10, 10, 15, 0.95);
+      }
+
+      #url::placeholder {
+        color: rgba(192, 192, 192, 0.5);
+        font-style: italic;
+      }
+
+      .report-button {
+        width: 100%;
+        background: linear-gradient(145deg, var(--danger-red), var(--cosmic-purple));
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-family: 'Orbitron', monospace;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 1.2rem 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 7, 58, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .report-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s;
+      }
+
+      .report-button:hover::before {
+        left: 100%;
+      }
+
+      .report-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 7, 58, 0.6);
+      }
+
+      .report-button:active {
+        transform: translateY(0);
+      }
+
+      .report-button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .report-button[aria-busy="true"] {
+        background: linear-gradient(145deg, var(--warning-amber), var(--plasma-orange));
+        animation: processing 1.5s ease-in-out infinite;
+      }
+
+      @keyframes processing {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+      }
+
+      .status-indicator {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(26, 26, 46, 0.9);
+        border: 2px solid var(--danger-red);
+        border-radius: 12px;
+        padding: 0.5rem 1rem;
+        font-family: 'Orbitron', monospace;
+        font-size: 0.8rem;
+        color: var(--danger-red);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        backdrop-filter: blur(10px);
+        animation: statusPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes statusPulse {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+      }
+
+      .security-warning {
+        background: linear-gradient(45deg, rgba(255, 7, 58, 0.1), rgba(255, 107, 53, 0.1));
+        border: 1px solid var(--danger-red);
+        border-radius: 8px;
+        padding: 0.8rem;
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: var(--warning-amber);
+        text-align: center;
+        font-family: 'Orbitron', monospace;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      @media (max-width: 768px) {
+        .command-title {
+          font-size: 1.8rem;
+        }
+        
+        .command-center {
+          margin: 1rem;
+        }
+        
+        .command-panel {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="status-indicator">⚠️ Admin Access</div>
+    
+    <div class="command-center">
+      <div class="command-panel">
+        <div class="command-header">
+          <h1 class="command-title">Mark of the Dawn Command</h1>
+          <p class="command-subtitle">🤖 SECURE Admin Bot</p>
+          <div class="system-info">
+            <strong>{ Challenge:</strong> "Mark of the Dawn", <strong>APP_URL:</strong> "<code id="appUrl"></code>" <strong>}</strong>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="url" class="input-label">🎯 Target URL Coordinates (Replace the hostname you have with "web")</label>
+
+          <input
+            type="text"
+            id="url"
+            name="url"
+            placeholder="http://web:3000/"
+            required
+          />
+        </div>
+        
+        <button id="report" class="report-button" aria-busy="false">
+          🚀 Execute Report
+        </button>
+        
+        <div class="security-warning">
+          ⚠️ Authorized Personnel Only ⚠️
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      const $ = document.getElementById.bind(document);
+
+      $("appUrl").textContent = "http://web:3000"
+
+      let loading = false;
+      $("report").addEventListener("click", async () => {
+        if (loading) return;
+        const url = $("url").value;
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+          alert("❌ Invalid URL coordinates");
+          return;
+        }
+
+        loading = true;
+        $("report").toggleAttribute("disabled");
+        $("report").setAttribute("aria-busy", "true");
+        $("report").textContent = "🔄 Processing...";
+
+        const res = await fetch("/api/report", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url }),
+        });
+        
+        if (res.status === 200) {
+          alert("✅ Mission Completed!");
+        } else {
+          alert("❌ " + await res.text());
+        }
+
+        loading = false;
+        $("report").toggleAttribute("disabled");
+        $("report").setAttribute("aria-busy", "false");
+        $("report").textContent = "🚀 Execute Report";
+      });
+    </script>
+  </body>
+</html>

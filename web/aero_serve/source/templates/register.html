@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Register - AeroServe</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Aviation, Ground Services, Aircraft Maintenance, Flight Support" name="keywords">
+    <meta content="AeroServe provides comprehensive aviation ground services with professional aircraft support and maintenance." name="description">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23007bff' d='M50 10 L80 40 L65 40 L50 25 L35 40 L20 40 Z'/%3E%3Cpath fill='%232C3E50' d='M45 40 L55 40 L55 80 L60 85 L55 90 L45 90 L40 85 L45 80 Z'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVRYhe2WQQ6CMBRF3wAm7oAtcQNchStxA9yAG+EqXAlcCTfADbARTcwYC49+/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        :root {
+            --aviation-blue: #007bff;
+            --aviation-gray: #2C3E50;
+        }
+        
+        body {
+            background: url("https://images.unsplash.com/photo-1715079016460-b455142230ec?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .container {
+            margin-top: 100px;
+            max-width: 400px;
+            background: rgba(0, 123, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid var(--aviation-blue);
+        }
+        
+        .btn-warning {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            background-color: var(--aviation-gray);
+            border-color: var(--aviation-gray);
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #1e2a36;
+            border-color: #1e2a36;
+            color: white;
+        }
+        
+        a {
+            color: var(--aviation-blue);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+        
+        .aviation-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--aviation-blue);
+        }
+        
+        /* Update navbar styling */
+        .navbar-light.bg-white {
+            background-color: var(--aviation-blue) !important;
+        }
+        
+        .navbar-light .navbar-brand h2 {
+            color: white !important;
+        }
+        
+        .navbar-light .navbar-nav .nav-link {
+            color: white !important;
+        }
+        
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: #cce7ff !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--aviation-gray) !important;
+            border-color: var(--aviation-gray) !important;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e2a36 !important;
+            border-color: #1e2a36 !important;
+        }
+        
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--aviation-blue);
+        }
+        
+        .form-control:focus {
+            border-color: var(--aviation-blue);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        
+        .text-danger {
+            color: var(--aviation-blue) !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary">AeroServe</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link active">Home</a>
+                <a href="/#about" class="nav-item nav-link">About</a>
+                <a href="/#services" class="nav-item nav-link">Services</a>
+                <a href="/#team" class="nav-item nav-link">Team</a>
+                <a href="/#testimonial" class="nav-item nav-link">Testimonials</a>
+                <a href="/#contact" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="/login" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+    <div class="container text-center">
+        <div class="aviation-icon">
+            <i class="fas fa-user-plus"></i>
+        </div>
+        <h2>Join AeroServe</h2>
+        <p>Register for aviation services access</p>
+        <form method="POST">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="username" placeholder="Enter Username" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" name="phone_number" placeholder="Enter Phone Number" required>
+            </div>
+            <button type="submit" class="btn btn-warning">Register Account</button>
+        </form>
+        <p class="mt-3">Already have credentials? <a href="/login">Access Portal</a></p>
+        {% if error %} <p class="text-danger">{{ error }}</p> {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

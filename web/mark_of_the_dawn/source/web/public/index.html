@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mark of the Dawn - Mission Control</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --space-black: #0a0a0f;
+        --deep-space: #1a1a2e;
+        --nebula-blue: #16213e;
+        --stellar-cyan: #00f5ff;
+        --plasma-orange: #ff6b35;
+        --cosmic-purple: #8a2be2;
+        --ion-green: #39ff14;
+        --silver-hull: #c0c0c0;
+        --warning-amber: #ffbf00;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Space Mono', monospace;
+        background: linear-gradient(135deg, var(--space-black) 0%, var(--deep-space) 50%, var(--nebula-blue) 100%);
+        color: var(--silver-hull);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(0, 245, 255, 0.4), transparent),
+          radial-gradient(1px 1px at 50px 160px, rgba(255, 107, 53, 0.3), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(138, 43, 226, 0.3), transparent),
+          radial-gradient(2px 2px at 130px 80px, rgba(57, 255, 20, 0.2), transparent);
+        background-repeat: repeat;
+        background-size: 200px 200px;
+        pointer-events: none;
+        z-index: -1;
+        animation: starfield 20s linear infinite;
+      }
+
+      @keyframes starfield {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-200px); }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .mission-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .mission-title {
+        font-family: 'Orbitron', monospace;
+        font-size: 3rem;
+        font-weight: 900;
+        background: linear-gradient(45deg, var(--stellar-cyan), var(--plasma-orange), var(--cosmic-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+        margin-bottom: 0.5rem;
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        0% { text-shadow: 0 0 30px rgba(0, 245, 255, 0.5); }
+        100% { text-shadow: 0 0 50px rgba(0, 245, 255, 0.8), 0 0 70px rgba(255, 107, 53, 0.3); }
+      }
+
+      .mission-subtitle {
+        font-family: 'Orbitron', monospace;
+        color: var(--warning-amber);
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .report-link {
+        display: inline-block;
+        font-family: 'Orbitron', monospace;
+        color: var(--plasma-orange);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 0.5rem 1rem;
+        border: 2px solid var(--plasma-orange);
+        border-radius: 8px;
+        background: rgba(255, 107, 53, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(5px);
+      }
+
+      .report-link::before {
+        content: '⚠️ ';
+        margin-right: 0.5rem;
+      }
+
+      .report-link::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+        transition: left 0.5s;
+      }
+
+      .report-link:hover {
+        color: white;
+        background: rgba(255, 107, 53, 0.2);
+        box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+        transform: translateY(-1px);
+      }
+
+      .report-link:hover::after {
+        left: 100%;
+      }
+
+      .control-panel {
+        background: linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
+        border: 2px solid var(--stellar-cyan);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 
+          0 0 30px rgba(0, 245, 255, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        position: relative;
+      }
+
+      .control-panel::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, var(--stellar-cyan), var(--plasma-orange), var(--cosmic-purple), var(--ion-green));
+        border-radius: 20px;
+        z-index: -1;
+        animation: borderPulse 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes borderPulse {
+        0% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .input-label {
+        display: block;
+        font-family: 'Orbitron', monospace;
+        color: var(--stellar-cyan);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+      }
+
+      #markdown {
+        width: 100%;
+        min-height: 200px;
+        background: rgba(10, 10, 15, 0.8);
+        border: 2px solid var(--nebula-blue);
+        border-radius: 12px;
+        color: var(--silver-hull);
+        font-family: 'Space Mono', monospace;
+        font-size: 0.95rem;
+        padding: 1rem;
+        resize: vertical;
+        transition: all 0.3s ease;
+        line-height: 1.6;
+      }
+
+      #markdown:focus {
+        outline: none;
+        border-color: var(--stellar-cyan);
+        box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+        background: rgba(10, 10, 15, 0.95);
+      }
+
+      .launch-button {
+        background: linear-gradient(145deg, var(--plasma-orange), var(--cosmic-purple));
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-family: 'Orbitron', monospace;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .launch-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s;
+      }
+
+      .launch-button:hover::before {
+        left: 100%;
+      }
+
+      .launch-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+      }
+
+      .launch-button:active {
+        transform: translateY(0);
+      }
+
+      .display-module {
+        background: linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
+        border: 2px solid var(--ion-green);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-top: 2rem;
+        box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .module-header {
+        font-family: 'Orbitron', monospace;
+        color: var(--ion-green);
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+        border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+        padding-bottom: 0.5rem;
+      }
+
+      .preview-content {
+        background: rgba(10, 10, 15, 0.6);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(57, 255, 20, 0.2);
+      }
+
+      .preview-content h1, .preview-content h2, .preview-content h3 {
+        color: var(--stellar-cyan);
+        font-family: 'Orbitron', monospace;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+      }
+
+      .preview-content ul, .preview-content ol {
+        color: var(--silver-hull);
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .preview-content li {
+        margin-bottom: 0.5rem;
+        position: relative;
+      }
+
+      .preview-content ul li::marker {
+        content: '▶ ';
+        color: var(--plasma-orange);
+      }
+
+      .html-output {
+        background: rgba(10, 10, 15, 0.8);
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid rgba(57, 255, 20, 0.2);
+        overflow-x: auto;
+      }
+
+      .html-output code {
+        color: var(--warning-amber);
+        font-family: 'Space Mono', monospace;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        white-space: pre-wrap;
+      }
+
+      .status-indicator {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(26, 26, 46, 0.9);
+        border: 2px solid var(--stellar-cyan);
+        border-radius: 12px;
+        padding: 0.5rem 1rem;
+        font-family: 'Orbitron', monospace;
+        font-size: 0.8rem;
+        color: var(--stellar-cyan);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        backdrop-filter: blur(10px);
+        animation: statusPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes statusPulse {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+      }
+
+      @media (max-width: 768px) {
+        .mission-title {
+          font-size: 2rem;
+        }
+        
+        .container {
+          padding: 1rem;
+        }
+        
+        .control-panel {
+          padding: 1.5rem;
+        }
+
+        .report-link {
+          font-size: 0.8rem;
+          padding: 0.4rem 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="status-indicator">Mission Control Online</div>
+    
+    <div class="container">
+      <div class="mission-header">
+        <h1 class="mission-title">Mark of the Dawn</h1>
+        <p class="mission-subtitle">Mission Control - Markdown Renderer</p>
+        <a href="/report" class="report-link">Report to Admin</a>
+      </div>
+
+      <form action="/" method="get">
+        <div class="control-panel">
+          <div class="input-group">
+            <label for="markdown" class="input-label">🚀 Mission Brief Input</label>
+            <textarea
+              id="markdown"
+              name="markdown"
+              maxlength="1024"
+              required
+              placeholder="Enter your mission parameters in Markdown format..."
+            ></textarea>
+          </div>
+          <button type="submit" class="launch-button">Launch Mission</button>
+        </div>
+      </form>
+
+      <main id="preview"></main>
+      <template id="template">
+        <div class="display-module">
+          <h3 class="module-header">🌌 Mission Preview</h3>
+          <div class="preview-content" id="preview"></div>
+          
+          <h3 class="module-header">💻 System Output</h3>
+          <div class="html-output">
+            <code id="html"></code>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <script type="module">
+      const $ = document.getElementById.bind(document);
+
+      const markdown = new URLSearchParams(location.search).get("markdown");
+      if (markdown) {
+        $("markdown").value = markdown;
+
+        const { escaped, unescaped } = await fetch(
+          `/render?${new URLSearchParams({ markdown })}`
+        ).then((r) => r.json());
+
+        const elm = $("template").content.cloneNode(true);
+        elm.getElementById("preview").innerHTML = unescaped;
+        elm.getElementById("html").innerHTML = escaped;
+        $("preview").appendChild(elm);
+      }
+
+      $("markdown").value ||= `
+## 🚀 Mission Briefing
+
+### Objectives
+- I love whoami03
+- Web is the BEST category in MetaCTF
+- MetaCTF{N0t_4_Fl@G_lol}
+
+### Flight Status
+- **Altitude**: 🌌 Deep Space
+- **Velocity**: Light Speed
+- **Coordinates**: Markdown Galaxy, Sector 7
+
+### Mission Notes
+> "Space: the final frontier of documentation"
+
+**Remember**: Always check your oxygen levels and markdown syntax!
+
+---
+*End transmission - Mission Control Out* 📡
+`.trimStart();
+
+      $("markdown").rows = Math.max(10, $("markdown").value.split("\n").length);
+    </script>
+  </body>
+</html>

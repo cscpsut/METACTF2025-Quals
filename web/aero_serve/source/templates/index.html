@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AeroServe - Aviation Ground Services</title>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Aviation, Ground Services, Aircraft Maintenance, Flight Support" name="keywords">
+    <meta content="AeroServe provides comprehensive aviation ground services with professional aircraft support and maintenance." name="description">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23007bff' d='M50 10 L80 40 L65 40 L50 25 L35 40 L20 40 Z'/%3E%3Cpath fill='%232C3E50' d='M45 40 L55 40 L55 80 L60 85 L55 90 L45 90 L40 85 L45 80 Z'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVRYhe2WQQ6CMBRF3wAm7oAtcQNchStxA9yAG+EqXAlcCTfADbARTcwYC49+/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --aviation-blue: #007bff;
+            --aviation-gray: #2C3E50;
+        }
+        
+        
+        .bg-white {
+            background-color: var(--aviation-blue) !important;
+            color: white !important;
+        }
+        
+        
+        .navbar-light.bg-white {
+            background-color: var(--aviation-blue) !important;
+        }
+        
+        .navbar-light .navbar-brand h2 {
+            color: white !important;
+        }
+        
+        .navbar-light .navbar-nav .nav-link {
+            color: white !important;
+        }
+        
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: #cce7ff !important;
+        }
+        
+        
+        .btn-light {
+            background-color: var(--aviation-blue);
+            border-color: var(--aviation-blue);
+            color: white;
+        }
+        
+        .btn-light:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--aviation-gray);
+            border-color: var(--aviation-gray);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e2a36;
+            border-color: #1e2a36;
+            color: white;
+        }
+        
+        
+        .service-item .d-flex .bg-white {
+            background-color: var(--aviation-blue) !important;
+        }
+        
+        .service-item .d-flex .bg-white i {
+            color: white !important;
+        }
+        
+        
+        .border-light {
+            border-color: var(--aviation-blue) !important;
+        }
+        
+        
+        .text-light {
+            color: var(--aviation-blue) !important;
+        }
+        
+        .text-primary {
+            color: var(--aviation-gray) !important;
+        }
+        
+        
+        .footer .btn.btn-social {
+            border-color: var(--aviation-blue);
+            color: var(--aviation-blue);
+        }
+        
+        .footer .btn.btn-social:hover {
+            background-color: var(--aviation-blue);
+            color: white;
+        }
+        
+        .footer .btn-outline-light {
+            border-color: var(--aviation-blue);
+            color: var(--aviation-blue);
+        }
+        
+        .footer .btn-outline-light:hover {
+            background-color: var(--aviation-blue);
+            color: white;
+        }
+        
+        
+        .team-item .team-social {
+            background: var(--aviation-blue) !important;
+        }
+        
+        .team-item .team-social .btn {
+            color: white !important;
+            background: var(--aviation-blue) !important;
+        }
+        
+        .team-item .team-social .btn:hover {
+            color: var(--aviation-blue) !important;
+            background: white !important;
+        }
+        
+        
+        .testimonial-item .bg-light {
+            background-color: var(--aviation-blue) !important;
+        }
+        
+        
+        .container-fluid.bg-light,
+        .testimonial-item img.bg-light {
+            background-color: #f8f9fa !important;
+        }
+        
+        
+        .spinner-grow {
+            color: var(--aviation-blue) !important;
+        }
+        
+        #spinner.bg-white {
+            background-color: white !important;
+        }
+        
+        
+        .section-title h1,
+        .display-5 {
+            color: var(--aviation-gray) !important;
+        }
+        
+        
+        .service-item a {
+            color: var(--aviation-gray) !important;
+        }
+        
+        .service-item a:hover {
+            color: var(--aviation-blue) !important;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    
+
+    
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary">AeroServe</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="#home" class="nav-item nav-link active">Home</a>
+                <a href="#about" class="nav-item nav-link">About</a>
+                <a href="#services" class="nav-item nav-link">Services</a>
+                <a href="#team" class="nav-item nav-link">Team</a>
+                <a href="#testimonial" class="nav-item nav-link">Testimonials</a>
+                <a href="#contact" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="/login" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+    
+
+    
+    <div id="home" class="container-fluid p-0 pb-5">
+        <div class="position-relative">
+            <img class="img-fluid w-100" src="https://images.unsplash.com/photo-1696238628662-e820babaf1e3?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Aircraft on Runway">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(53, 53, 53, .7);">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-8 text-center">
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Welcome To AeroServe</h5>
+                            <h1 class="display-3 text-white animated slideInDown mb-4">Professional Aviation Ground Services</h1>
+                            <p class="fs-5 fw-medium text-white mb-4 pb-2">
+                                Experience excellence in aviation with our comprehensive ground support services. Professional, reliable, and delivered with precision.
+                            </p>
+                            <a href="/login" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Access Portal</a>
+                            <a href="#contact" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div id="about" class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container about px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style="object-fit: cover;" alt="Aircraft Maintenance">
+                    </div>
+                </div>
+                <div class="col-lg-6 about-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        <div class="section-title text-start">
+                            <h1 class="display-5 mb-4">About Us</h1>
+                        </div>
+                        <p class="mb-4 pb-2">At AeroServe, we are dedicated to providing world-class aviation ground services. Our mission is to ensure safe, efficient, and reliable support for aircraft operations, allowing airlines and private operators to focus on what matters most – safe flight operations.</p>
+                        <div class="row g-4 mb-4 pb-2">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 60px; height: 60px;">
+                                        <i class="fa fa-plane fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h2 class="text-primary mb-1" data-toggle="counter-up">1245</h2>
+                                        <p class="fw-medium mb-0">Aircraft Serviced</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 60px; height: 60px;">
+                                        <i class="fa fa-check fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h2 class="text-primary mb-1" data-toggle="counter-up">8542</h2>
+                                        <p class="fw-medium mb-0">Safe Operations</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#services" class="btn btn-primary py-3 px-5">Explore Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div id="services" class="container-xxl py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h1 class="display-5 mb-5">Our Services</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="https://static1.simpleflyingimages.com/wordpress/wp-content/uploads/2022/06/GettyImages-51742222.jpg?q=50&fit=crop&w=1100&h=618&dpr=1.5" alt="Aircraft Refueling">
+                        </div>
+                        <div class="p-4 text-center border border-5 border-light border-top-0">
+                            <h4 class="mb-3">Ground Support Equipment</h4>
+                            <p>Comprehensive ground support services including refueling, baggage handling, and aircraft positioning.</p>
+                            <a class="fw-medium" href="#contact">Request Service<i class="fa fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="https://images.unsplash.com/photo-1485310818226-f01c4269687f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Aircraft Maintenance">
+                        </div>
+                        <div class="p-4 text-center border border-5 border-light border-top-0">
+                            <h4 class="mb-3">Aircraft Maintenance</h4>
+                            <p>Professional maintenance services ensuring your aircraft meets all safety and regulatory requirements.</p>
+                            <a class="fw-medium" href="#contact">Request Service<i class="fa fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="https://images.unsplash.com/photo-1723059518530-1feec72f2771?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Flight Operations">
+                        </div>
+                        <div class="p-4 text-center border border-5 border-light border-top-0">
+                            <h4 class="mb-3">Flight Operations Support</h4>
+                            <p>Complete flight operations support including flight planning, weather briefings, and coordination services.</p>
+                            <a class="fw-medium" href="#contact">Request Service<i class="fa fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <div id="contact" class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container quote px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="https://images.unsplash.com/photo-1715927134295-6b1016e28414?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style="object-fit: cover;" alt="Airport Terminal">
+                    </div>
+                </div>
+                <div class="col-lg-6 quote-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        <div class="section-title text-start">
+                            <h1 class="display-5 mb-4">Contact Us</h1>
+                        </div>
+                        <p class="mb-4 pb-2">Need aviation services or have questions about our operations? Get in touch with our team today!</p>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control border-0" placeholder="Subject" style="height: 55px;">
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control border-0" placeholder="Message"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit" onclick="alert('Contact Us feature is not implemented yet.')">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div id="team" class="container-xxl py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h1 class="display-5 mb-5">Our Team</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item">
+                        <div class="overflow-hidden position-relative">
+                            <img class="img-fluid" src="https://media.istockphoto.com/id/520732161/photo/this-is-my-plane.jpg?s=612x612&w=0&k=20&c=dp1wsRRitjQ-pa4zErOqRwpKu9pkgOMgbeszWCn1QK0=" alt="Team Member 1">
+                            <div class="team-social">
+                                <a class="btn btn-square" href="https://www.linkedin.com/in/ahmadalawneh3/"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center border border-5 border-light border-top-0 p-4">
+                            <h5 class="mb-0">Captain AviationPro</h5>
+                            <small>Chief Flight Operations</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item">
+                        <div class="overflow-hidden position-relative">
+                            <img class="img-fluid" src="https://t4.ftcdn.net/jpg/11/92/34/43/360_F_1192344358_2jpDFfPY559Ay3pqii19tUdVCWx8On90.jpg" alt="Team Member 2">
+                            <div class="team-social">
+                                <a class="btn btn-square" href="https://www.linkedin.com/in/ahmadalawneh3/"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center border border-5 border-light border-top-0 p-4">
+                            <h5 class="mb-0">Engineer SkyTech</h5>
+                            <small>Head of Maintenance</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item">
+                        <div class="overflow-hidden position-relative">
+                            <img class="img-fluid" src="https://www.inform-software.com/_Resources/Persistent/f/a/c/4/fac4ed15f68d82897d5ed5c8db2b0193c0fc8cef/aviation-gs-rms-960x540.png" alt="Team Member 3">
+                            <div class="team-social">
+                                <a class="btn btn-square" href="https://www.linkedin.com/in/ahmadalawneh3/"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center border border-5 border-light border-top-0 p-4">
+                            <h5 class="mb-0">Director AirOps</h5>
+                            <small>Ground Operations Manager</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div id="testimonial" class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="section-title text-center">
+                <h1 class="display-5 mb-5">Testimonials</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel">
+                <div class="testimonial-item text-center">
+                    <img class="img-fluid bg-light p-2 mx-auto mb-3" src="https://media.istockphoto.com/id/520732161/photo/this-is-my-plane.jpg?s=612x612&w=0&k=20&c=dp1wsRRitjQ-pa4zErOqRwpKu9pkgOMgbeszWCn1QK0=" style="width: 90px; height: 90px;">
+                    <div class="testimonial-text text-center p-4">
+                        <p>AeroServe provided exceptional ground services for our fleet. Their professionalism and attention to safety protocols is outstanding. Highly recommended for any aviation operation!</p>
+                        <h5 class="mb-1">Captain Sarah Mitchell</h5>
+                        <span class="fst-italic">Regional Airline Pilot</span>
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="img-fluid bg-light p-2 mx-auto mb-3" src="https://t4.ftcdn.net/jpg/11/92/34/43/360_F_1192344358_2jpDFfPY559Ay3pqii19tUdVCWx8On90.jpg" style="width: 90px; height: 90px;">
+                    <div class="testimonial-text text-center p-4">
+                        <p>The maintenance services exceeded our expectations. Quick turnaround times and thorough inspections. Our aircraft have never been in better condition. Thank you, AeroServe!</p>
+                        <h5 class="mb-1">Mike Johnson</h5>
+                        <span class="fst-italic">Fleet Manager</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Terminal 3, International Airport, USA</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+1 (555) 423-4227</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>aeroserve.metactf</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Services</h4>
+                    <a class="btn btn-link" href="#services">Ground Support Equipment</a>
+                    <a class="btn btn-link" href="#services">Aircraft Maintenance</a>
+                    <a class="btn btn-link" href="#services">Flight Operations Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="#about">About Us</a>
+                    <a class="btn btn-link" href="#contact">Contact Us</a>
+                    <a class="btn btn-link" href="#services">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest aviation industry updates and service announcements.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    
+    <script src="js/main.js"></script>
+</body>
+
+</html>

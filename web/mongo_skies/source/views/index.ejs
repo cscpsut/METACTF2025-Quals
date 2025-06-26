@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mongo skies Crew Portal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: url('/image1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            backdrop-filter: blur(3px);
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 {
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 24px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #c8102e;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #a50e26;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🛫 Mongo skies Crew Login</h2>
+        <form method="POST" action="/login">
+            <input type="text" name="user" placeholder="Captain ID" required>
+            <input type="password" name="pass" placeholder="Flight Code" required>
+            <button type="submit">Board</button>
+        </form>
+        <!-- There is more than meets the eye:) -->
+        <!-- Mongo skies love packages, who doesn't! -->
+        <div class="footer">Sponsored by Mongo skies ✈️</div>
+    </div>
+</body>
+</html>

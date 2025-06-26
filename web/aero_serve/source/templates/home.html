@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - AeroServe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --aviation-blue: #007bff;
+            --aviation-gray: #2C3E50;
+        }
+        
+        body {
+            background: url("https://www.firedos.de/files/en/19/shutterstock_1043665888.png?20192") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+        }
+        
+        .main-container {
+            background: rgba(44, 62, 80, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+            max-width: 1000px;
+            border: 3px solid var(--aviation-gray);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+        }
+        
+        .service-section {
+            background: rgba(0, 123, 255, 0.1);
+            border: 2px solid var(--aviation-blue);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .service-section h4 {
+            color: var(--aviation-blue);
+            margin-bottom: 15px;
+        }
+        
+        .form-control, .form-select {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--aviation-blue);
+            color: #333;
+        }
+        
+        .btn-primary {
+            background-color: var(--aviation-blue);
+            border-color: var(--aviation-blue);
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        .btn-danger {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            background-color: var(--aviation-gray);
+            border-color: var(--aviation-gray);
+        }
+        
+        .btn-danger:hover {
+            background-color: #1e2a36;
+            border-color: #1e2a36;
+        }
+        
+        .stats-display {
+            background: rgba(40, 167, 69, 0.2);
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .last-action {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #ffc107;
+        }
+        
+        .aviation-welcome {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--aviation-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="aviation-welcome">
+            <i class="fas fa-plane"></i>
+        </div>
+        <h1>✈️ Welcome to AeroServe, {{ user }}!</h1>
+        <p class="lead">Your aviation services portal is ready for operations.</p>
+        
+        {% if session.get('maintenance_count') or session.get('refuel_count') or session.get('inspection_count') or session.get('flight_plan_count') %}
+        <div class="stats-display">
+            <h5><i class="fas fa-chart-bar"></i> Activity Summary</h5>
+            <div class="row">
+                <div class="col-3">
+                    <strong>{{ session.get('maintenance_count', 0) }}</strong><br>
+                    <small>Maintenance</small>
+                </div>
+                <div class="col-3">
+                    <strong>{{ session.get('refuel_count', 0) }}</strong><br>
+                    <small>Refueling</small>
+                </div>
+                <div class="col-3">
+                    <strong>{{ session.get('inspection_count', 0) }}</strong><br>
+                    <small>Inspections</small>
+                </div>
+                <div class="col-3">
+                    <strong>{{ session.get('flight_plan_count', 0) }}</strong><br>
+                    <small>Flight Plans</small>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if session.get('last_action') %}
+        <div class="last-action">
+            <i class="fas fa-info-circle"></i> <strong>Last Action:</strong> {{ session.get('last_action') }}
+        </div>
+        {% endif %}
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="service-section">
+                    <h4><i class="fas fa-tools"></i> Maintenance</h4>
+                    <form method="POST" action="/maintenance_action">
+                        <div class="mb-2">
+                            <select name="aircraft" class="form-select form-select-sm" required>
+                                <option value="">Select Aircraft</option>
+                                <option value="N123AB">N123AB - Boeing 737</option>
+                                <option value="N456CD">N456CD - Cessna Citation</option>
+                                <option value="N789EF">N789EF - Airbus A320</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <select name="maintenance_type" class="form-select form-select-sm" required>
+                                <option value="">Maintenance Type</option>
+                                <option value="Routine Inspection">Routine Inspection</option>
+                                <option value="Engine Service">Engine Service</option>
+                                <option value="Avionics Check">Avionics Check</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Schedule</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="service-section">
+                    <h4><i class="fas fa-gas-pump"></i> Refueling</h4>
+                    <form method="POST" action="/refuel_action">
+                        <div class="mb-2">
+                            <select name="aircraft" class="form-select form-select-sm" required>
+                                <option value="">Select Aircraft</option>
+                                <option value="N123AB">N123AB - Boeing 737</option>
+                                <option value="N456CD">N456CD - Cessna Citation</option>
+                                <option value="N789EF">N789EF - Airbus A320</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <input type="number" name="fuel_amount" class="form-control form-control-sm" placeholder="Fuel Amount (gallons)" min="1" max="50000" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Add Fuel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="service-section">
+                    <h4><i class="fas fa-clipboard-check"></i> Inspections</h4>
+                    <form method="POST" action="/inspection_action">
+                        <div class="mb-2">
+                            <select name="aircraft" class="form-select form-select-sm" required>
+                                <option value="">Select Aircraft</option>
+                                <option value="N123AB">N123AB - Boeing 737</option>
+                                <option value="N456CD">N456CD - Cessna Citation</option>
+                                <option value="N789EF">N789EF - Airbus A320</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <select name="inspection_type" class="form-select form-select-sm" required>
+                                <option value="">Inspection Type</option>
+                                <option value="Pre-flight Check">Pre-flight Check</option>
+                                <option value="Annual Inspection">Annual Inspection</option>
+                                <option value="100-Hour Inspection">100-Hour Inspection</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Schedule</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-section">
+                    <h4><i class="fas fa-route"></i> Flight Planning</h4>
+                    <form method="POST" action="/flight_plan_action">
+                        <div class="mb-2">
+                            <select name="aircraft" class="form-select form-select-sm" required>
+                                <option value="">Select Aircraft</option>
+                                <option value="N123AB">N123AB - Boeing 737</option>
+                                <option value="N456CD">N456CD - Cessna Citation</option>
+                                <option value="N789EF">N789EF - Airbus A320</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <input type="text" name="destination" class="form-control form-control-sm" placeholder="Destination (e.g., KLAX)" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Create Plan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/logout" class="btn btn-danger">Sign Out</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

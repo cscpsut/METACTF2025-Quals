@@ -1,0 +1,2 @@
+ssh pilot@52.4.44.94
+// Password: P!l0t1969
