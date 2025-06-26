@@ -1,1 +1,1 @@
-"# METACTF2025-Quals" 
+# METACTF2025-Quals
