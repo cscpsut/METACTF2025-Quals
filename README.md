@@ -18,7 +18,7 @@ This repository contains all the challenges from the METACTF2025 qualifiers.
 All the challenges containes the source code and the writeup  
 
 ## How to run docker challenges
-All docker challenges takes there flags from the ENV var `FLAG`, so in order to find the flag in your instance make sure to add `-e FLAG=METACTF{PLACEHOLDER}` to the last line in the challenge `build.sh`:
+All docker challenges takes their flags from the ENV var `FLAG`, so in order to find the flag in your instance make sure to add `-e FLAG=METACTF{PLACEHOLDER}` to the last line in the challenge `build.sh`:
 ```sh
 #!/bin/bash
 sudo docker rm -f meta-24-path-finder
