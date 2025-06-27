@@ -155,7 +155,7 @@ This inverts the condition, making the program succeed when our input doesn't ma
 00102bfc    MOV    EAX, dword ptr [RBP + local_14]
 
 # Patched (use user input):
-00102bfc    MOV    EAX, dword ptr [RBP + local_1c]
+00102bfc    MOV    EAX, dword ptr [RBP + local_18]
 ```
 
 This changes the decryption key source from the random number to our input.
